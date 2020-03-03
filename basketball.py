@@ -7,8 +7,6 @@ database = pymongo.MongoClient("mongodb://localhost:27017")
 
 bballDB = database["collegeBasketball"]
 
-
-
 def games(conf, visitor, home):
   conference = bballDB[conf].find()
 
