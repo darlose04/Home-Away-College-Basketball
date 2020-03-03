@@ -11,11 +11,14 @@ acc = bballDB["acc"].find()
 awayPoints = 0
 homePoints = 0
 
+accArr = []
+
 for item in acc:
   if item["AWAYPTS"] != '':
     awayPoints += item["AWAYPTS"]
   if item["HOMEPTS"] != '':
     homePoints += item["HOMEPTS"]
+  accArr.append(item)
 
 
 
@@ -26,3 +29,4 @@ for item in acc:
 
 print("Visitor total points: ", awayPoints)
 print("Home total points: ", homePoints)
+print(len(accArr))
