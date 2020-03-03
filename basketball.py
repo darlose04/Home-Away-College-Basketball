@@ -7,6 +7,10 @@ database = pymongo.MongoClient("mongodb://localhost:27017")
 
 bballDB = database["collegeBasketball"]
 
+conf = input("Please enter a conference (lowercase, no spaces: ex: big12): ")
+visitor = input("Please enter the away team: ")
+home = input("Please enter the home team: ")
+
 def games(conf, visitor, home):
   conference = bballDB[conf].find()
 
@@ -34,4 +38,4 @@ def games(conf, visitor, home):
 
   return info
 
-print(games("acc", "Syracuse", "Boston College"))
+print(games(conf, visitor, home))
