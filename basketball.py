@@ -7,7 +7,7 @@ database = pymongo.MongoClient("mongodb://localhost:27017")
 
 bballDB = database["collegeBasketball"]
 
-conf = input("Please enter a conference (lowercase, no spaces: ex: big12): ")
+conf = input("Please enter a conference (camelcase, no spaces: ex: big12, bigEast): ")
 visitor = input("Please enter the away team: ")
 home = input("Please enter the home team: ")
 
