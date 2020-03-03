@@ -6,6 +6,9 @@ bballDB = database["collegeBasketball"]
 
 x = bballDB["acc"].find()
 
+awayPoints = 0
+
 for item in bballDB["acc"].find():
-  if item["Home"] == "Duke":
-    print(item)
+  awayPoints += item["AWAYPTS"]
+
+print(awayPoints)
