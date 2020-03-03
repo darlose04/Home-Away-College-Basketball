@@ -34,5 +34,5 @@ def games(visitor, home):
 
   return info
 
-print(games("Maryland", "Rutgers"))
-# print(games("Michigan State", "Penn State"))
+# print(games("Maryland", "Rutgers"))
+print(games("Michigan State", "Penn State"))
