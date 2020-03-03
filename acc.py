@@ -4,8 +4,6 @@ database = pymongo.MongoClient("mongodb://localhost:27017")
 
 bballDB = database["collegeBasketball"]
 
-x = bballDB["acc"].find()
-
 acc = bballDB["acc"].find()
 
 awayPoints = 0
