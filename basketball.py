@@ -16,8 +16,10 @@ def games(conf, visitor, home):
 
   homePoints = 0
   homeGames = []
+  homeOppTotalPoints = 0
   awayPoints = 0
   awayGames = []
+  awayOppTotalPoints = 0
 
   for item in conference:
     if item["Home"] == home and item["HOMEPTS"] != '':
@@ -29,11 +31,20 @@ def games(conf, visitor, home):
       if item["AWAYPTS"] != '':
         awayPoints += item["AWAYPTS"]
 
+  for item in homeGames:
+    homeOppTotalPoints += item["AWAYPTS"]
+  
+  for item in awayGames:
+    awayOppTotalPoints += item["HOMEPTS"]
+
+
   info = {
     'homeTeam': home,
     'ppgHome': homePoints / len(homeGames),
+    'homeOppPPG': homeOppTotalPoints / len(homeGames),
     'awayTeam': visitor,
-    'ppgAway': awayPoints / len(awayGames)
+    'ppgAway': awayPoints / len(awayGames),
+    'awayOppPPG': awayOppTotalPoints / len(awayGames)
   }
 
   return info
