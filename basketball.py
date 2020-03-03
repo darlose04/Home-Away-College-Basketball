@@ -43,10 +43,12 @@ def games(conf, visitor, home):
     'ppgHome': homePoints / len(homeGames),
     'homeOppPPG': homeOppTotalPoints / len(homeGames),
     'homeTotals': (homePoints / len(homeGames) + homeOppTotalPoints / len(homeGames)),
+    'homeMargin': (homePoints / len(homeGames) - homeOppTotalPoints / len(homeGames)),
     'awayTeam': visitor,
     'ppgAway': awayPoints / len(awayGames),
     'awayOppPPG': awayOppTotalPoints / len(awayGames),
-    'awayTotals': (awayPoints / len(awayGames) + awayOppTotalPoints / len(awayGames))  
+    'awayTotals': (awayPoints / len(awayGames) + awayOppTotalPoints / len(awayGames)),
+    'awayMargin': (awayPoints / len(awayGames) - awayOppTotalPoints / len(awayGames))
   }
 
   return info
