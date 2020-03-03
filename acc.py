@@ -7,15 +7,17 @@ database = pymongo.MongoClient("mongodb://localhost:27017")
 
 bballDB = database["collegeBasketball"]
 
-big10 = bballDB["acc"].find()
 
-def games(visitor, home):
+
+def games(conf, visitor, home):
+  conference = bballDB[conf].find()
+
   homePoints = 0
   homeGames = []
   awayPoints = 0
   awayGames = []
 
-  for item in big10:
+  for item in conference:
     if item["Home"] == home and item["HOMEPTS"] != '':
       homeGames.append(item)
       if item["HOMEPTS"] != '':
@@ -33,3 +35,5 @@ def games(visitor, home):
   }
 
   return info
+
+print(games("acc", "Syracuse", "Boston College"))
