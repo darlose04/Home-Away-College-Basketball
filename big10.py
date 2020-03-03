@@ -1,4 +1,7 @@
 import pymongo
+import pprint
+
+pp = pprint.PrettyPrinter(indent=2)
 
 database = pymongo.MongoClient("mongodb://localhost:27017")
 
@@ -18,4 +21,4 @@ for item in big10:
       homePoints += item["HOMEPTS"]
 
 print(homePoints)
-print(homeGames)
+pp.pprint(homeGames)
