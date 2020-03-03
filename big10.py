@@ -16,21 +16,23 @@ def games(visitor, home):
   awayGames = []
 
   for item in big10:
-    if item["Home"] == home:
+    if item["Home"] == home and item["HOMEPTS"] != '':
       homeGames.append(item)
       if item["HOMEPTS"] != '':
         homePoints += item["HOMEPTS"]
-
-  for item in big10:
-    if item["Visitor"] == visitor:
+    if item["Visitor"] == visitor and item["AWAYPTS"] != '':
       awayGames.append(item)
       if item["AWAYPTS"] != '':
         awayPoints += item["AWAYPTS"]
 
-  print(homePoints / 9)
-  pp.pprint(homeGames)
+  info = {
+    'homeTeam': home,
+    'ppgHome': homePoints / len(homeGames),
+    'awayTeam': visitor,
+    'ppgAway': awayPoints / len(awayGames)
+  }
 
-  print(awayPoints)
-  pp.pprint(awayGames)
+  return info
 
-# print(games("Maryland", "Rutgers"))
+print(games("Maryland", "Rutgers"))
+# print(games("Michigan State", "Penn State"))
