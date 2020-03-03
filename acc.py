@@ -1,30 +1,35 @@
 import pymongo
+import pprint
+
+pp = pprint.PrettyPrinter(indent=2)
 
 database = pymongo.MongoClient("mongodb://localhost:27017")
 
 bballDB = database["collegeBasketball"]
 
-acc = bballDB["acc"].find()
+big10 = bballDB["acc"].find()
 
-awayPoints = 0
-homePoints = 0
+def games(visitor, home):
+  homePoints = 0
+  homeGames = []
+  awayPoints = 0
+  awayGames = []
 
-accArr = []
+  for item in big10:
+    if item["Home"] == home and item["HOMEPTS"] != '':
+      homeGames.append(item)
+      if item["HOMEPTS"] != '':
+        homePoints += item["HOMEPTS"]
+    if item["Visitor"] == visitor and item["AWAYPTS"] != '':
+      awayGames.append(item)
+      if item["AWAYPTS"] != '':
+        awayPoints += item["AWAYPTS"]
 
-for item in acc:
-  if item["AWAYPTS"] != '':
-    awayPoints += item["AWAYPTS"]
-  if item["HOMEPTS"] != '':
-    homePoints += item["HOMEPTS"]
-  accArr.append(item)
+  info = {
+    'homeTeam': home,
+    'ppgHome': homePoints / len(homeGames),
+    'awayTeam': visitor,
+    'ppgAway': awayPoints / len(awayGames)
+  }
 
-
-
-# entry = bballDB["acc"].find_one()
-# print(entry["AWAYPTS"])
-# print(type(entry["AWAYPTS"]))
-
-
-print("Visitor total points: ", awayPoints)
-print("Home total points: ", homePoints)
-print(len(accArr))
+  return info
